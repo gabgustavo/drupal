@@ -1,0 +1,7 @@
+escuela.drupal:
+  path: '/escuela/drupal'
+  defaults:
+    _controller: '\Drupal\escuela\Controller\DrupalController::escuela'
+    _title: 'Pagina de pruebas'
+  requirements:
+    _permission: 'access content'
