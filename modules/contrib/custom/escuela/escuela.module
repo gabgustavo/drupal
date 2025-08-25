@@ -1,0 +1,18 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_help().
+ */
+function escuela_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.escuela':
+      $output = '<p>Esta es la pagina de ayuda del modulo Escuela</p>
+      <p>Este modulo permite gestionar las escuelas</p>';
+      return $output;
+      //return Markup::create($output);
+    break;
+  }
+}
