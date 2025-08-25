@@ -1,0 +1,10 @@
+name: Escuela modulo de introducción
+description: 'Módulo que se usara para introducción a Drupal'
+type: module
+core_version_requirement: '^9 || ^10'
+package: 'EscuelaDrupal'
+version: 1.0.0
+dependencies:
+  - drupal:node
+  #- devel:devel
+  #- devel:devel_generate
