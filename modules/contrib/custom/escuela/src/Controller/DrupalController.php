@@ -15,7 +15,10 @@ class DrupalController extends ControllerBase {
   protected $connection;
   protected $dbAlias = 'gab_';
 
-  public function __construct(MessengerInterface $messenger, Connection $connection) {
+  public function __construct(
+    MessengerInterface $messenger,
+    Connection $connection
+  ) {
     $this->messenger = $messenger;
     $this->connection = $connection;
   }
@@ -24,6 +27,7 @@ class DrupalController extends ControllerBase {
     return new static(
       $container->get('messenger'),
       $container->get('database'),
+      //$container->get('entity_type.manager'),
     );
   }
 
@@ -39,7 +43,9 @@ class DrupalController extends ControllerBase {
     //$messenger->addMessage($this->t('Este es un mensaje de prueba desde el controlador'));
 
     $dbData = $this->dbQuery();
+    $node = $this->ormQuery();
     //dd($dbData);
+    dd($node);
 
 
     $this->messenger->addMessage($this->t('Este es un mensaje de prueba desde el controlador'));
@@ -65,5 +71,17 @@ class DrupalController extends ControllerBase {
     ->query('SELECT * FROM {users_field_data}
     WHERE uid = :uid', [':uid' => 1])
     ->fetchAll();
+  }
+
+  private function ormQuery(){
+    $node = $this->entityTypeManager()
+    ->getStorage('node')
+    //->getStorage('file')
+    //->getStorage('user')
+    //->getStorage('media')
+    //->load(1);
+    //->loadMultiple();
+    ->loadMultiple([1,2,3]);
+    return $node;
   }
 }
