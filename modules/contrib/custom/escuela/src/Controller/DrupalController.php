@@ -45,7 +45,7 @@ class DrupalController extends ControllerBase {
     $dbData = $this->dbQuery();
     $node = $this->ormQuery();
     //dd($dbData);
-    dd($node);
+    //dd($node);
 
 
     $this->messenger->addMessage($this->t('Este es un mensaje de prueba desde el controlador'));
