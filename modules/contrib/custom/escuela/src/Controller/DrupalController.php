@@ -4,6 +4,7 @@ namespace Drupal\escuela\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;
 use Drupal;
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -11,14 +12,18 @@ class DrupalController extends ControllerBase {
 
   /** @var \Drupal\Core\Messenger\MessengerInterface $messenger **/
   protected $messenger;
+  protected $connection;
+  protected $dbAlias = 'gab_';
 
-  public function __construct(MessengerInterface $messenger) {
+  public function __construct(MessengerInterface $messenger, Connection $connection) {
     $this->messenger = $messenger;
+    $this->connection = $connection;
   }
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('messenger')
+      $container->get('messenger'),
+      $container->get('database'),
     );
   }
 
@@ -32,6 +37,9 @@ class DrupalController extends ControllerBase {
     //De la manera incorrecta
     /* $messenger = Drupal::service('messenger');*/
     //$messenger->addMessage($this->t('Este es un mensaje de prueba desde el controlador'));
+
+    $dbData = $this->dbQuery();
+    //dd($dbData);
 
 
     $this->messenger->addMessage($this->t('Este es un mensaje de prueba desde el controlador'));
@@ -50,5 +58,12 @@ class DrupalController extends ControllerBase {
     ]; */
 
     return $build;
+  }
+
+  private function dbQuery() {
+    return $this->connection
+    ->query('SELECT * FROM {users_field_data}
+    WHERE uid = :uid', [':uid' => 1])
+    ->fetchAll();
   }
 }
