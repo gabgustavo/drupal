@@ -26,7 +26,8 @@
         "drupal/mahi": "^1.0",
         "drupal/pathauto": "^1.13",
         "drupal/tara": "^10.1",
-        "drupal/vani": "^10.0"
+        "drupal/vani": "^10.0",
+        "drush/drush": "^12.5"
     },
     "conflict": {
         "drupal/drupal": "*"
