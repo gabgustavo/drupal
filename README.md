@@ -2,3 +2,5 @@
 
 # gestor de contenido codigo desde CLI
 `php vendor/bin/drush`
+`php vendor/bin/drush cache:clear`
+`php vendor/bin/drush cache:rebuild`
