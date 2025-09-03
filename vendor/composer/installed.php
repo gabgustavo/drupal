@@ -3,7 +3,7 @@
         'name' => 'drupal/legacy-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a01954c270bd641a7f3d74d85c7df121a70229ae',
+        'reference' => 'bf25c6543673c2cd2728450abf587b7a0063b65b',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -379,6 +379,15 @@
                 0 => '10.0.0',
             ),
         ),
+        'drupal/country' => array(
+            'pretty_version' => '2.1.1',
+            'version' => '2.1.1.0',
+            'reference' => '2.1.1',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/country',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/ctools' => array(
             'pretty_version' => '4.1.0',
             'version' => '4.1.0.0',
@@ -409,7 +418,7 @@
         'drupal/legacy-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a01954c270bd641a7f3d74d85c7df121a70229ae',
+            'reference' => 'bf25c6543673c2cd2728450abf587b7a0063b65b',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
