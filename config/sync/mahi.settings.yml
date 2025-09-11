@@ -1,6 +1,5 @@
 _core:
   default_config_hash: Khc28Vs_bLvkkxJ3VANkPJSDKfad7eBQ60UpIaBBoso
-langcode: es
 container_width: 1200
 header_width: header_width_contained
 main_width: main_width_contained

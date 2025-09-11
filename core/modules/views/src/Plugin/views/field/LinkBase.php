@@ -64,7 +64,7 @@ abstract class LinkBase extends FieldPluginBase {
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
+   *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Access\AccessManagerInterface $access_manager
@@ -102,7 +102,7 @@ abstract class LinkBase extends FieldPluginBase {
   /**
    * Gets the current active user.
    *
-   * @todo: https://www.drupal.org/node/2105123 put this method in
+   * @todo https://www.drupal.org/node/2105123 put this method in
    *   \Drupal\Core\Plugin\PluginBase instead.
    *
    * @return \Drupal\Core\Session\AccountInterface
@@ -224,7 +224,7 @@ abstract class LinkBase extends FieldPluginBase {
   protected function addLangcode(ResultRow $row) {
     $entity = $this->getEntity($row);
     if ($entity && $this->languageManager->isMultilingual()) {
-      $this->options['alter']['language'] = $this->getEntityTranslation($entity, $row)->language();
+      $this->options['alter']['language'] = $this->getEntityTranslationByRelationship($entity, $row)->language();
     }
   }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Unit\Plugin\views\field;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -51,6 +53,8 @@ class EntityOperationsUnitTest extends UnitTestCase {
    * @covers ::__construct
    */
   protected function setUp(): void {
+    parent::setUp();
+
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $this->entityRepository = $this->createMock(EntityRepositoryInterface::class);
     $this->languageManager = $this->createMock('\Drupal\Core\Language\LanguageManagerInterface');
@@ -81,14 +85,14 @@ class EntityOperationsUnitTest extends UnitTestCase {
   /**
    * @covers ::usesGroupBy
    */
-  public function testUsesGroupBy() {
+  public function testUsesGroupBy(): void {
     $this->assertFalse($this->plugin->usesGroupBy());
   }
 
   /**
    * @covers ::defineOptions
    */
-  public function testDefineOptions() {
+  public function testDefineOptions(): void {
     $options = $this->plugin->defineOptions();
     $this->assertIsArray($options);
     $this->assertArrayHasKey('destination', $options);
@@ -97,7 +101,7 @@ class EntityOperationsUnitTest extends UnitTestCase {
   /**
    * @covers ::render
    */
-  public function testRenderWithDestination() {
+  public function testRenderWithDestination(): void {
     $entity_type_id = $this->randomMachineName();
     $entity = $this->getMockBuilder('\Drupal\user\Entity\Role')
       ->disableOriginalConstructor()
@@ -139,7 +143,7 @@ class EntityOperationsUnitTest extends UnitTestCase {
   /**
    * @covers ::render
    */
-  public function testRenderWithoutDestination() {
+  public function testRenderWithoutDestination(): void {
     $entity_type_id = $this->randomMachineName();
     $entity = $this->getMockBuilder('\Drupal\user\Entity\Role')
       ->disableOriginalConstructor()
@@ -180,7 +184,7 @@ class EntityOperationsUnitTest extends UnitTestCase {
   /**
    * @covers ::render
    */
-  public function testRenderWithoutEntity() {
+  public function testRenderWithoutEntity(): void {
     $this->setUpMockLoggerWithMissingEntity();
 
     $entity = NULL;

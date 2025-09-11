@@ -6,3 +6,4 @@ name: 'Categoría Película'
 vid: categoria_pelicula
 description: 'Categoría(s) de las película(s)'
 weight: 0
+new_revision: false

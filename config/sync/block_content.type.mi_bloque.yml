@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 id: mi_bloque
 label: 'Mi bloque'
-revision: 0
+revision: false
 description: ''

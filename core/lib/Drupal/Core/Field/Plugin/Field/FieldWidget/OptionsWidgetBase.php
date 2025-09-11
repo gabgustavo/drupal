@@ -45,6 +45,7 @@ abstract class OptionsWidgetBase extends WidgetBase {
   /**
    * Tracks whether the field has a value.
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   protected bool $has_value;
 
   /**
@@ -151,6 +152,7 @@ abstract class OptionsWidgetBase extends WidgetBase {
       $context = [
         'fieldDefinition' => $this->fieldDefinition,
         'entity' => $entity,
+        'widget' => $this,
       ];
       $module_handler->alter('options_list', $options, $context);
 

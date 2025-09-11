@@ -6,3 +6,4 @@ name: Género
 vid: gender
 description: 'Los géneros de las películas'
 weight: 0
+new_revision: false

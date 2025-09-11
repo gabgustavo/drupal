@@ -3,15 +3,15 @@
 namespace Drupal\views\Plugin\views\field;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Attribute\ViewsField;
 use Drupal\views\ResultRow;
 
 /**
  * Field handler to present a link to an entity.
  *
  * @ingroup views_field_handlers
- *
- * @ViewsField("entity_link")
  */
+#[ViewsField("entity_link")]
 class EntityLink extends LinkBase {
 
   /**
@@ -42,7 +42,7 @@ class EntityLink extends LinkBase {
       return NULL;
     }
     if ($this->languageManager->isMultilingual()) {
-      $entity = $this->getEntityTranslation($entity, $row);
+      $entity = $this->getEntityTranslationByRelationship($entity, $row);
     }
     return $entity->toUrl($template)->setAbsolute($this->options['absolute']);
   }
@@ -50,7 +50,7 @@ class EntityLink extends LinkBase {
   /**
    * Returns the entity link template name identifying the link route.
    *
-   * @returns string
+   * @return string
    *   The link template name.
    */
   protected function getEntityLinkTemplate() {
