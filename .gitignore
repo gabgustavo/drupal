@@ -27,5 +27,6 @@ dist-ssr
 */dist-ssr
 */*.local
 */vendor/*
+/vendor/
 
 **/sites/default/files/php/twig/*
