@@ -1,0 +1,22 @@
+uuid: 67870ae5-60ba-40c5-b738-b3a8134e8fc0
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mahi
+_core:
+  default_config_hash: 0MpHdTxyHKQQKhTl544ZO2_ni3BWEFn-UoAcqfqLAAM
+id: mahi_content
+theme: mahi
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,33 @@
+uuid: 1c14ff04-71de-464e-ad87-b72f0e72ffa3
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.peliculas.field_actor
+    - field.field.node.peliculas.field_descripcion
+    - field.field.node.peliculas.field_director
+    - field.field.node.peliculas.field_fecha_de_lanzamiento
+    - field.field.node.peliculas.field_media_image
+    - field.field.node.peliculas.field_vocabulary_gender
+    - node.type.peliculas
+  module:
+    - user
+id: node.peliculas.teaser
+targetEntityType: node
+bundle: peliculas
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_actor: true
+  field_descripcion: true
+  field_director: true
+  field_fecha_de_lanzamiento: true
+  field_media_image: true
+  field_vocabulary_gender: true
+  langcode: true

@@ -1,0 +1,21 @@
+uuid: 30dc05a9-fdf3-4e77-a948-a3248805055a
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_descripcion
+    - node.type.peliculas
+  module:
+    - text
+id: node.peliculas.field_descripcion
+field_name: field_descripcion
+entity_type: node
+bundle: peliculas
+label: Sinopsis
+description: 'Descripción de la película '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

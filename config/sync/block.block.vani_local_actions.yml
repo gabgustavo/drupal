@@ -1,0 +1,20 @@
+uuid: 7106c5b9-3147-458a-9248-f4fea0d91242
+langcode: es
+status: true
+dependencies:
+  theme:
+    - vani
+_core:
+  default_config_hash: ieghZ097mY9lSP0MbDzbQPVZb7OIkpefQjrRb9KbYWs
+id: vani_local_actions
+theme: vani
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

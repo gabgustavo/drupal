@@ -1,0 +1,21 @@
+uuid: b2616793-0624-4674-98e0-a18235e1be95
+langcode: es
+status: true
+dependencies: {  }
+name: portada_grande
+label: 'Portada grande'
+effects:
+  887a6876-feb4-400d-b9b6-4e1fe76eb479:
+    uuid: 887a6876-feb4-400d-b9b6-4e1fe76eb479
+    id: image_convert
+    weight: -9
+    data:
+      extension: webp
+  4e2b7691-2ebb-4c55-a7d4-7f54ffcf675f:
+    uuid: 4e2b7691-2ebb-4c55-a7d4-7f54ffcf675f
+    id: image_scale_and_crop
+    weight: -10
+    data:
+      width: 220
+      height: 320
+      anchor: center-center

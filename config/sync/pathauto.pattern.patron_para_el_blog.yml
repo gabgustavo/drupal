@@ -1,0 +1,34 @@
+uuid: 1d5e8c2b-48f4-423c-814c-fb7e460acfac
+langcode: es
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: patron_para_el_blog
+label: 'Patron para el blog'
+type: 'canonical_entities:node'
+pattern: '/blog/[node:title]'
+selection_criteria:
+  a5648fe4-d7c7-4e87-8b8f-9819fab4876a:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a5648fe4-d7c7-4e87-8b8f-9819fab4876a
+    context_mapping:
+      node: node
+    bundles:
+      blog: blog
+  091e91bd-04c3-4829-9867-19a7fc3fd88f:
+    id: language
+    negate: false
+    uuid: 091e91bd-04c3-4829-9867-19a7fc3fd88f
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      es: es
+      en: en
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Idioma

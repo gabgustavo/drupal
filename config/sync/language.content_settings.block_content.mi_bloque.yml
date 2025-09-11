@@ -1,0 +1,11 @@
+uuid: 07ebaab1-e42c-427c-87e4-95f3c8743e15
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.mi_bloque
+id: block_content.mi_bloque
+target_entity_type_id: block_content
+target_bundle: mi_bloque
+default_langcode: site_default
+language_alterable: false

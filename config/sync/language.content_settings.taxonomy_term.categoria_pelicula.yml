@@ -1,0 +1,11 @@
+uuid: 9f4391fc-daf5-4793-9490-af50e239f06b
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categoria_pelicula
+id: taxonomy_term.categoria_pelicula
+target_entity_type_id: taxonomy_term
+target_bundle: categoria_pelicula
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,22 @@
+uuid: 2904c855-a9da-4187-971e-e9e1bb2bb2e7
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: patron_para_peliculas
+label: 'Patron para películas'
+type: 'canonical_entities:node'
+pattern: '/movies/[node:title]'
+selection_criteria:
+  63436db2-b286-4ea1-91d8-385042497507:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 63436db2-b286-4ea1-91d8-385042497507
+    context_mapping:
+      node: node
+    bundles:
+      peliculas: peliculas
+selection_logic: and
+weight: -5
+relationships: {  }

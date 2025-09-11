@@ -1,0 +1,29 @@
+uuid: baaf7637-6d28-4b5c-b114-16958c7e6edf
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vocabulary_gender
+    - node.type.peliculas
+    - taxonomy.vocabulary.gender
+id: node.peliculas.field_vocabulary_gender
+field_name: field_vocabulary_gender
+entity_type: node
+bundle: peliculas
+label: Genero
+description: 'El genero de las películas '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      gender: gender
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,15 @@
+uuid: cf6f5b88-8759-4772-a3dc-d04c594cc824
+langcode: es
+status: true
+dependencies: {  }
+name: custom_150x150
+label: 'custom 150x150'
+effects:
+  be872c65-acb0-486b-b2c9-6fab55daae45:
+    uuid: be872c65-acb0-486b-b2c9-6fab55daae45
+    id: image_scale
+    weight: 1
+    data:
+      width: 150
+      height: 150
+      upscale: false

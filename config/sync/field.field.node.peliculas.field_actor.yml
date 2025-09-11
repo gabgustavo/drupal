@@ -1,0 +1,29 @@
+uuid: f6b82205-a338-40d1-9f15-22ce02db54e4
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_actor
+    - node.type.peliculas
+    - node.type.person
+id: node.peliculas.field_actor
+field_name: field_actor
+entity_type: node
+bundle: peliculas
+label: Actor
+description: 'Los actores que han participado en una película'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      person: person
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

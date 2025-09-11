@@ -1,0 +1,77 @@
+uuid: e193c281-3dd0-4219-84f2-7a190c42837f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.peliculas.field_actor
+    - field.field.node.peliculas.field_descripcion
+    - field.field.node.peliculas.field_director
+    - field.field.node.peliculas.field_fecha_de_lanzamiento
+    - field.field.node.peliculas.field_media_image
+    - field.field.node.peliculas.field_vocabulary_gender
+    - node.type.peliculas
+  module:
+    - datetime
+    - text
+    - user
+id: node.peliculas.default
+targetEntityType: node
+bundle: peliculas
+mode: default
+content:
+  field_actor:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_descripcion:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_director:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_fecha_de_lanzamiento:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: html_year
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_image:
+    type: entity_reference_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_vocabulary_gender:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

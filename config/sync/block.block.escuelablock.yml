@@ -1,0 +1,20 @@
+uuid: 6d2aaa98-269c-4392-bbed-cb00680115c9
+langcode: es
+status: true
+dependencies:
+  module:
+    - escuela
+  theme:
+    - mahi
+id: escuelablock
+theme: mahi
+region: page_header
+weight: 0
+provider: null
+plugin: escuela_block
+settings:
+  id: escuela_block
+  label: 'Escuela Block'
+  label_display: visible
+  provider: escuela
+visibility: {  }

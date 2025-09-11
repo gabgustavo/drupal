@@ -1,0 +1,8 @@
+uuid: 9e48df10-8075-4950-9e67-760414c1e7f0
+langcode: es
+status: true
+dependencies: {  }
+name: 'Categoría Película'
+vid: categoria_pelicula
+description: 'Categoría(s) de las película(s)'
+weight: 0

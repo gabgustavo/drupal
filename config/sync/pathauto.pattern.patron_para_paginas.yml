@@ -1,0 +1,22 @@
+uuid: 8f4350c4-4490-4dc9-94f1-8a5fd6f12993
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: patron_para_paginas
+label: 'Patron para paginas'
+type: 'canonical_entities:node'
+pattern: '/pages/[node:title]'
+selection_criteria:
+  1affee0b-3ea9-41f9-9f83-fd3b5f175dd9:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 1affee0b-3ea9-41f9-9f83-fd3b5f175dd9
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+selection_logic: and
+weight: -5
+relationships: {  }

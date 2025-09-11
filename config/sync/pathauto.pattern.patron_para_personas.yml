@@ -1,0 +1,22 @@
+uuid: 215a1ee4-4258-4c92-b8d4-39afa281b960
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: patron_para_personas
+label: 'Patron para personas'
+type: 'canonical_entities:node'
+pattern: '/person/[node:title]'
+selection_criteria:
+  24a9065e-63d1-4849-ac5e-39ef52c2ce65:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 24a9065e-63d1-4849-ac5e-39ef52c2ce65
+    context_mapping:
+      node: node
+    bundles:
+      person: person
+selection_logic: and
+weight: -5
+relationships: {  }

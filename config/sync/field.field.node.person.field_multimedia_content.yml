@@ -1,0 +1,29 @@
+uuid: 58966fa3-9687-47f6-8168-7caedb0cf57f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_multimedia_content
+    - media.type.image
+    - node.type.person
+id: node.person.field_multimedia_content
+field_name: field_multimedia_content
+entity_type: node
+bundle: person
+label: 'Contenido multimedia'
+description: 'Imagen de la persona'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

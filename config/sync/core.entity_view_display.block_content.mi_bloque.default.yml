@@ -1,0 +1,23 @@
+uuid: ae4b68de-1796-4e73-9bde-4952e1d7bf52
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.mi_bloque
+    - field.field.block_content.mi_bloque.body
+  module:
+    - text
+id: block_content.mi_bloque.default
+targetEntityType: block_content
+bundle: mi_bloque
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,31 @@
+uuid: 026b8f0a-9121-4cf6-aa2d-9b15eb51a494
+langcode: es
+status: true
+dependencies:
+  config:
+    - image.style.large
+    - image.style.max_325x325
+    - image.style.medium
+    - image.style.portada_grande
+  theme:
+    - mahi
+id: portada
+label: Portada
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: portada_grande
+    breakpoint_id: mahi.wide
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: max_325x325
+    breakpoint_id: mahi.narrow
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: medium
+    breakpoint_id: mahi.mobile
+    multiplier: 1x
+breakpoint_group: mahi
+fallback_image_style: large

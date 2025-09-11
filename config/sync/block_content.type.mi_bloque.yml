@@ -1,0 +1,8 @@
+uuid: d80dc31b-50a8-4651-9246-2803db3fadf6
+langcode: es
+status: true
+dependencies: {  }
+id: mi_bloque
+label: 'Mi bloque'
+revision: 0
+description: ''

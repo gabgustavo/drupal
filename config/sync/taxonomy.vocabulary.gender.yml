@@ -1,0 +1,8 @@
+uuid: b6ff988c-a0cd-4f06-b547-3e23652a4e14
+langcode: es
+status: true
+dependencies: {  }
+name: Género
+vid: gender
+description: 'Los géneros de las películas'
+weight: 0

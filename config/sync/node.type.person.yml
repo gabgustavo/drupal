@@ -1,0 +1,18 @@
+uuid: d1cda1b7-7ef9-4eef-8b13-2e4e1914284a
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Persona
+type: person
+description: 'La persona que de alguna manera participa en una película ya sea como actor o director'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

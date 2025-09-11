@@ -1,0 +1,48 @@
+uuid: 3e933139-e498-444f-a4ba-fc648b235002
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.person.body
+    - field.field.node.person.field_country
+    - field.field.node.person.field_multimedia_content
+    - node.type.person
+  module:
+    - country
+    - text
+    - user
+id: node.person.default
+targetEntityType: node
+bundle: person
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_country:
+    type: country_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_multimedia_content:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,22 @@
+uuid: f9ecc249-ef78-4046-bffa-59bef9ecc18f
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.peliculas
+id: node.peliculas.promote
+field_name: promote
+entity_type: node
+bundle: peliculas
+label: 'Promocionado a la página principal'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Activado
+  off_label: Desactivado
+field_type: boolean

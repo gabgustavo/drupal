@@ -1,0 +1,22 @@
+uuid: 1ecf0872-d3f4-499c-b2bf-7b3383a4a28e
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: patron_para_articulos_
+label: 'Patron para artículos '
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  fd47222b-8a0f-4434-be86-cc9367492bbe:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: fd47222b-8a0f-4434-be86-cc9367492bbe
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+selection_logic: and
+weight: -5
+relationships: {  }
