@@ -24,6 +24,8 @@
         "drupal/country": "^2.1",
         "drupal/devel": "^5.2",
         "drupal/examples": "^4.0",
+        "drupal/gin": "^4.0",
+        "drupal/gin_toolbar": "^2.0",
         "drupal/mahi": "^1.0",
         "drupal/pathauto": "^1.13",
         "drupal/redirect": "^1.12",
