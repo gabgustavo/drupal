@@ -1620,32 +1620,6 @@ ol.breadcrumb-items li {
   padding: 6px 0;
 }
 
-/* Node content -> Tag field */
-.node-taxonomy-container .term-title::before {
-  content: "#";
-  color: var(--color-primary);
-}
-
-.taxonomy-terms {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.node-taxonomy-container .term-title,
-.taxonomy-terms li {
-  position: relative;
-  margin: 0;
-}
-
-.taxonomy-term::before {
-  content: "#";
-  color: var(--color-secondary);
-}
-
 /* Node content -> Links field */
 .node-links-container {
   padding: 12px 1rem;
@@ -2153,7 +2127,7 @@ button:hover::before,
   margin: 0;
 }
 
-.no-paddibng {
+.no-padding {
   padding: 0;
 }
 

@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\devel\Kernel;
 
-use Drupal\block\Entity\Block;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\block\Entity\Block;
 use Drupal\system\Entity\Menu;
 
 /**
@@ -16,7 +16,7 @@ class DevelEnforcedDependenciesTest extends KernelTestBase {
   /**
    * Modules to enable.
    *
-   * @var array
+   * @var string[]
    */
   protected static $modules = ['devel', 'block', 'user', 'system'];
 

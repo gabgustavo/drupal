@@ -310,7 +310,7 @@ function mahi_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#multiple' => TRUE,
     '#upload_location' => 'public://',
     '#upload_validators' => array(
-      'file_validate_extensions' => array('gif png jpg jpeg svg'),
+      'FileExtension' => array('gif png jpg jpeg svg'),
     ),
     '#default_value'  => theme_get_setting('slider_images', 'mahi'),
     '#description'   => t('<p><hr /></p><p><ul><li>You can upload multiple images.</li><li>Recommended size is 1920px X 1080px</li><li>Right click the image to copy the image path and use it in the slider code below.</li></ul></p>'),

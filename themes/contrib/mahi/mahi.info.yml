@@ -5,7 +5,7 @@ description: '<p>Mahi is a light weight modern Drupal 9, 10, 11 theme by <a href
 package: Drupar
 core_version_requirement: ^9 || ^10 || ^11
 # Comment version before uploading to drupal.org
-# version: 1.1.0
+# version: 1.1.1
 # Libraries
 libraries:
   - mahi/global-styling # Library for all global css. These css will be loaded on every pages.
@@ -29,7 +29,7 @@ regions:
   footer_bottom: 'Footer Bottom'
   hidden_blocks: 'Hidden Blocks'
 
-# Information added by Drupal.org packaging script on 2024-08-11
-version: '1.1.0'
+# Information added by Drupal.org packaging script on 2025-09-15
+version: '1.1.1'
 project: 'mahi'
-datestamp: 1723352329
+datestamp: 1757908206

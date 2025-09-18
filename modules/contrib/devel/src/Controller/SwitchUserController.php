@@ -3,7 +3,6 @@
 namespace Drupal\devel\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Session\SessionManagerInterface;
 use Drupal\user\UserStorageInterface;
@@ -27,13 +26,6 @@ class SwitchUserController extends ControllerBase {
   protected UserStorageInterface $userStorage;
 
   /**
-   * The module handler service.
-   *
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
-   */
-  protected $moduleHandler;
-
-  /**
    * The session manager service.
    */
   protected SessionManagerInterface $sessionManager;
@@ -44,38 +36,17 @@ class SwitchUserController extends ControllerBase {
   protected Session $session;
 
   /**
-   * Constructs a new SwitchUserController object.
-   *
-   * @param \Drupal\Core\Session\AccountProxyInterface $account
-   *   The current user.
-   * @param \Drupal\user\UserStorageInterface $user_storage
-   *   The user storage.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   The user storage.
-   * @param \Drupal\Core\Session\SessionManagerInterface $session_manager
-   *   The session manager service.
-   * @param \Symfony\Component\HttpFoundation\Session\Session $session
-   *   The session.
-   */
-  public function __construct(AccountProxyInterface $account, UserStorageInterface $user_storage, ModuleHandlerInterface $module_handler, SessionManagerInterface $session_manager, Session $session) {
-    $this->account = $account;
-    $this->userStorage = $user_storage;
-    $this->moduleHandler = $module_handler;
-    $this->sessionManager = $session_manager;
-    $this->session = $session;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): static {
-    return new static(
-      $container->get('current_user'),
-      $container->get('entity_type.manager')->getStorage('user'),
-      $container->get('module_handler'),
-      $container->get('session_manager'),
-      $container->get('session')
-    );
+    $instance = parent::create($container);
+    $instance->account = $container->get('current_user');
+    $instance->userStorage = $container->get('entity_type.manager')->getStorage('user');
+    $instance->moduleHandler = $container->get('module_handler');
+    $instance->sessionManager = $container->get('session_manager');
+    $instance->session = $container->get('session');
+
+    return $instance;
   }
 
   /**
@@ -84,7 +55,7 @@ class SwitchUserController extends ControllerBase {
    * We don't call session_save_session() because we really want to change
    * users. Usually unsafe!
    *
-   * @param string $name
+   * @param string|null $name
    *   The username to switch to, or NULL to log out.
    *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -92,10 +63,11 @@ class SwitchUserController extends ControllerBase {
    *
    * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
    */
-  public function switchUser($name = NULL) {
+  public function switchUser(?string $name = NULL) {
     if (empty($name) || !($account = $this->userStorage->loadByProperties(['name' => $name]))) {
       throw new AccessDeniedHttpException();
     }
+
     $account = reset($account);
 
     // Call logout hooks when switching from original user.

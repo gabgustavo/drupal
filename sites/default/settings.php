@@ -818,7 +818,7 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 $databases['default']['default'] = array (
   'database' => 'cms_drupal',
   'username' => 'root',
-  'password' => '',
+  'password' => 'root',
   'prefix' => 'gab_',
   'host' => 'localhost',
   'port' => '3306',
@@ -829,3 +829,6 @@ $databases['default']['default'] = array (
 $settings['config_sync_directory'] = 'sites/default/files/config_ZOycM8bXcB5ZSOImmTWvrywu8VkLwBbUpiPvs8yM8wmLYfQGMZLVfkRjAvwRT3bO1I26eczM1w/sync';
 
 $settings['config_sync_directory'] = './config/sync';
+
+$settings['smtp_host'] = '127.0.0.1';
+$settings['smtp_port'] = 1025;
