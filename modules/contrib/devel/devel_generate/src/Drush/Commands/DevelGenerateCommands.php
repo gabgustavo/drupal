@@ -22,22 +22,28 @@ final class DevelGenerateCommands extends DrushCommands {
   use AutowireTrait;
 
   const USERS = 'devel-generate:users';
+
   const TERMS = 'devel-generate:terms';
+
   const VOCABS = 'devel-generate:vocabs';
+
   const MENUS = 'devel-generate:menus';
+
   const CONTENT = 'devel-generate:content';
+
   const BLOCK_CONTENT = 'devel-generate:block-content';
+
   const MEDIA = 'devel-generate:media';
 
   /**
    * The plugin instance.
    */
-  protected DevelGenerateBaseInterface $pluginInstance;
+  private DevelGenerateBaseInterface $pluginInstance;
 
   /**
    * The Generate plugin parameters.
    */
-  protected array $parameters;
+  private array $parameters;
 
   /**
    * DevelGenerateCommands constructor.
@@ -119,7 +125,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Option(name: 'roles', description: 'A comma delimited list of role IDs for new users. Don\'t specify <info>authenticated</info>.')]
   #[CLI\Option(name: 'pass', description: 'Specify a password to be set for all generated users.')]
   #[Generator(id: 'user')]
-  public function users(int $num = 50, array $options = ['kill' => FALSE, 'roles' => self::REQ]): void {
+  public function users(string|int $num = 50, array $options = ['kill' => FALSE, 'roles' => self::REQ]): void {
     // @todo pass $options to the plugins.
     $this->generate();
   }
@@ -137,7 +143,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Option(name: 'min-depth', description: 'The minimum depth of hierarchy for the new terms.')]
   #[CLI\Option(name: 'max-depth', description: 'The maximum depth of hierarchy for the new terms.')]
   #[Generator(id: 'term')]
-  public function terms(int $num = 50, array $options = ['kill' => FALSE, 'bundles' => self::REQ, 'feedback' => '1000', 'languages' => self::REQ, 'translations' => self::REQ, 'min-depth' => '1', 'max-depth' => '4']): void {
+  public function terms(?string $num = '50', array $options = ['kill' => FALSE, 'bundles' => self::REQ, 'feedback' => '1000', 'languages' => self::REQ, 'translations' => self::REQ, 'min-depth' => '1', 'max-depth' => '4']): void {
     $this->generate();
   }
 
@@ -149,7 +155,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[Generator(id: 'vocabulary')]
   #[CLI\ValidateModulesEnabled(modules: ['taxonomy'])]
   #[CLI\Option(name: 'kill', description: 'Delete all vocabs before generating new ones.')]
-  public function vocabs(int $num = 1, array $options = ['kill' => FALSE]): void {
+  public function vocabs(?string $num = '1', array $options = ['kill' => FALSE]): void {
     $this->generate();
   }
 
@@ -163,7 +169,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Argument(name: 'max_width', description: 'Max width of first level of links.')]
   #[CLI\Option(name: 'kill', description: 'Delete any menus and menu links previously created by devel_generate before generating new ones.')]
   #[Generator(id: 'menu')]
-  public function menus(int $number_menus = 2, int $number_links = 50, int $max_depth = 3, int $max_width = 8, array $options = ['kill' => FALSE]): void {
+  public function menus(?string $number_menus = '2', ?string $number_links = '50', ?string $max_depth = '3', string $max_width = '8', array $options = ['kill' => FALSE]): void {
     $this->generate();
   }
 
@@ -185,7 +191,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Option(name: 'translations', description: 'A comma-separated list of language codes for translations.')]
   #[CLI\Option(name: 'add-type-label', description: 'Add the content type label to the front of the node title')]
   #[Generator(id: 'content')]
-  public function content(int $num = 50, int $max_comments = 0, array $options = ['kill' => FALSE, 'bundles' => 'page,article', 'authors' => self::REQ, 'roles' => self::REQ, 'feedback' => 1000, 'skip-fields' => self::REQ, 'base-fields' => self::REQ, 'languages' => self::REQ, 'translations' => self::REQ, 'add-type-label' => FALSE]): void {
+  public function content(string $num = '50', ?string $max_comments = '0', array $options = ['kill' => FALSE, 'bundles' => 'page,article', 'authors' => self::REQ, 'roles' => self::REQ, 'feedback' => 1000, 'skip-fields' => self::REQ, 'base-fields' => self::REQ, 'languages' => self::REQ, 'translations' => self::REQ, 'add-type-label' => FALSE]): void {
     $this->generate();
   }
 
@@ -206,7 +212,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Option(name: 'add-type-label', description: 'Add the block type label to the front of the node title')]
   #[CLI\Option(name: 'reusable', description: 'Create re-usable blocks. Disable for inline Layout Builder blocks, for example.')]
   #[Generator(id: 'block_content')]
-  public function blockContent(int $num = 50, array $options = ['kill' => FALSE, 'block_types' => 'basic', 'feedback' => 1000, 'skip-fields' => self::REQ, 'base-fields' => self::REQ, 'languages' => self::REQ, 'translations' => self::REQ, 'add-type-label' => FALSE, 'reusable' => TRUE]): void {
+  public function blockContent(?string $num = '50', array $options = ['kill' => FALSE, 'block_types' => 'basic', 'feedback' => 1000, 'skip-fields' => self::REQ, 'base-fields' => self::REQ, 'languages' => self::REQ, 'translations' => self::REQ, 'add-type-label' => FALSE, 'reusable' => TRUE]): void {
     $this->generate();
   }
 
@@ -223,7 +229,7 @@ final class DevelGenerateCommands extends DrushCommands {
   #[CLI\Option(name: 'languages', description: 'A comma-separated list of language codes')]
   #[CLI\ValidateModulesEnabled(modules: ['media'])]
   #[Generator(id: 'media')]
-  public function media(int $num = 50, array $options = ['kill' => FALSE, 'media-types' => self::REQ, 'feedback' => 1000, 'skip-fields' => self::REQ, 'languages' => self::REQ, 'base-fields' => self::REQ]): void {
+  public function media(?string $num = '50', array $options = ['kill' => FALSE, 'media-types' => self::REQ, 'feedback' => 1000, 'skip-fields' => self::REQ, 'languages' => self::REQ, 'base-fields' => self::REQ]): void {
     $this->generate();
   }
 
@@ -235,7 +241,7 @@ final class DevelGenerateCommands extends DrushCommands {
    */
   #[CLI\Hook(HookManager::ARGUMENT_VALIDATOR)]
   public function validate(CommandData $commandData): void {
-    $manager = $this->getManager();
+    $manager = $this->manager;
     $args = $commandData->input()->getArguments();
     // The command name is the first argument but we do not need this.
     array_shift($args);
@@ -250,8 +256,8 @@ final class DevelGenerateCommands extends DrushCommands {
    * Wrapper for calling the plugin instance generate function.
    */
   public function generate(): void {
-    $instance = $this->getPluginInstance();
-    $instance->generate($this->getParameters());
+    $instance = $this->pluginInstance;
+    $instance->generate($this->parameters);
   }
 
 }

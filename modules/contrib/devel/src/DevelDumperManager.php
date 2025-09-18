@@ -4,6 +4,7 @@ namespace Drupal\devel;
 
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Entity\EntityInterface;
@@ -69,7 +70,7 @@ class DevelDumperManager implements DevelDumperManagerInterface {
     DevelDumperPluginManagerInterface $dumper_manager,
     EntityTypeManagerInterface $entityTypeManager,
     MessengerInterface $messenger,
-    TranslationInterface $string_translation
+    TranslationInterface $string_translation,
   ) {
     $this->config = $config_factory->get('devel.settings');
     $this->account = $account;
@@ -82,23 +83,24 @@ class DevelDumperManager implements DevelDumperManagerInterface {
   /**
    * Instances a new dumper plugin.
    *
-   * @param string $plugin_id
+   * @param string|null $plugin_id
    *   (optional) The plugin ID, defaults to NULL.
    *
    * @return \Drupal\devel\DevelDumperInterface
    *   Returns the devel dumper plugin instance.
    */
-  protected function createInstance($plugin_id = NULL) {
+  protected function createInstance(?string $plugin_id = NULL) {
     if (!$plugin_id || !$this->dumperManager->isPluginSupported($plugin_id)) {
       $plugin_id = $this->config->get('devel_dumper');
     }
+
     return $this->dumperManager->createInstance($plugin_id);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function dump($input, $name = NULL, $plugin_id = NULL): void {
+  public function dump($input, ?string $name = NULL, $plugin_id = NULL): void {
     if ($this->hasAccessToDevelInformation()) {
       $this->createInstance($plugin_id)->dump($input, $name);
     }
@@ -107,20 +109,22 @@ class DevelDumperManager implements DevelDumperManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function export($input, $name = NULL, $plugin_id = NULL, $load_references = FALSE) {
-    if ($this->hasAccessToDevelInformation()) {
-      if ($load_references && $input instanceof EntityInterface) {
-        $input = $this->entityToArrayWithReferences($input);
-      }
-      return $this->createInstance($plugin_id)->export($input, $name);
+  public function export(mixed $input, ?string $name = NULL, ?string $plugin_id = NULL, bool $load_references = FALSE): MarkupInterface|string {
+    if (!$this->hasAccessToDevelInformation()) {
+      return '';
     }
-    return NULL;
+
+    if ($load_references && $input instanceof EntityInterface) {
+      $input = $this->entityToArrayWithReferences($input);
+    }
+
+    return $this->createInstance($plugin_id)->export($input, $name);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function message($input, $name = NULL, $type = MessengerInterface::TYPE_STATUS, $plugin_id = NULL, $load_references = FALSE): void {
+  public function message($input, ?string $name = NULL, $type = MessengerInterface::TYPE_STATUS, ?string $plugin_id = NULL, $load_references = FALSE): void {
     if ($this->hasAccessToDevelInformation()) {
       $output = $this->export($input, $name, $plugin_id, $load_references);
       $this->messenger->addMessage($output, $type, TRUE);
@@ -130,13 +134,14 @@ class DevelDumperManager implements DevelDumperManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function debug($input, $name = NULL, $plugin_id = NULL) {
+  public function debug($input, ?string $name = NULL, ?string $plugin_id = NULL) {
     $output = $this->createInstance($plugin_id)->export($input, $name) . "\n";
     // The temp directory does vary across multiple simpletest instances.
     $file = $this->config->get('debug_logfile');
     if (empty($file)) {
       $file = 'temporary://drupal_debug.txt';
     }
+
     if (file_put_contents($file, $output, FILE_APPEND) === FALSE && $this->hasAccessToDevelInformation()) {
       $this->messenger->addError($this->t('Devel was unable to write to %file.', ['%file' => $file]));
       return FALSE;
@@ -146,27 +151,31 @@ class DevelDumperManager implements DevelDumperManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function dumpOrExport($input, $name = NULL, $export = TRUE, $plugin_id = NULL) {
+  public function dumpOrExport($input, ?string $name = NULL, $export = TRUE, ?string $plugin_id = NULL) {
     if ($this->hasAccessToDevelInformation()) {
       $dumper = $this->createInstance($plugin_id);
       if ($export) {
         return $dumper->export($input, $name);
       }
+
       $dumper->dump($input, $name);
     }
+
     return NULL;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function exportAsRenderable($input, $name = NULL, $plugin_id = NULL, $load_references = FALSE): array {
+  public function exportAsRenderable($input, ?string $name = NULL, $plugin_id = NULL, $load_references = FALSE): array {
     if ($this->hasAccessToDevelInformation()) {
       if ($load_references && $input instanceof EntityInterface) {
         $input = $this->entityToArrayWithReferences($input);
       }
+
       return $this->createInstance($plugin_id)->exportAsRenderable($input, $name);
     }
+
     return [];
   }
 
@@ -177,7 +186,7 @@ class DevelDumperManager implements DevelDumperManagerInterface {
    *   TRUE if the user has the permission, FALSE otherwise.
    */
   protected function hasAccessToDevelInformation(): bool {
-    return $this->account && $this->account->hasPermission('access devel information');
+    return $this->account->hasPermission('access devel information');
   }
 
   /**
