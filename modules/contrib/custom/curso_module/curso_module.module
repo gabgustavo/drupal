@@ -45,3 +45,15 @@ function curso_module_node_update(NodeInterface $node) {
   $messenger->addError('drupal esta llamando al hook update');
 
 }
+
+
+/**
+ * interface hook_theme($existing, $type, $theme, $path)
+ */
+function curso_module_theme($existing, $type, $theme, $path) {
+  return [
+    'curso_plantilla' => [
+      'variables' => ['etiqueta' => NULL, 'tipo' => NULL]
+    ],
+  ];
+}

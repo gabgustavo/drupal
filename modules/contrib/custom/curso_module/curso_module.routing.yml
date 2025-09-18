@@ -16,3 +16,10 @@ curso_module.tercer_ruta:
     _controller: '\Drupal\curso_module\Controller\CursoController::homeManual'
   requirements:
     _permission: 'access content'
+
+curso_module.cuarta_ruta:
+  path: '/curso/controller/pagina-dinamica-dos/{node}'
+  defaults:
+    _controller: '\Drupal\curso_module\Controller\CursoController::homeDinamicoDos'
+  requirements:
+    _permission: 'access content'
