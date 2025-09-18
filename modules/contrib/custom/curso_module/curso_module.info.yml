@@ -1,0 +1,10 @@
+name: Curso modulo de introducción
+type: module
+core_version_requirement: '^9 || ^10 || ^11'
+description: 'Módulo que se usara para introducción a Drupal'
+version: 1.0.0
+package: 'Curso'
+dependencies:
+  - drupal:node
+  #- drupal:user
+  #- devel:devel
