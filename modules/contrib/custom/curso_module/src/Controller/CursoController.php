@@ -3,13 +3,26 @@
 namespace Drupal\curso_module\Controller;
 
 use \Drupal\Core\Controller\ControllerBase;
+use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class CursoController  extends  ControllerBase{
-  public function home() {
+  public function home($pagina) {
     return [
       #'#plain_text' => $this->t('Hola este es mi primer controlador del curso con plain text'),
-      '#markup' => $this->t('Hola este es mi primer controlador del curso con markup'),
+      '#markup' => $this->t('Hola este es mi primer controlador del curso con markup::'.$pagina),
+    ];
+  }
+
+  public function homeDinamico(NodeInterface $node) {
+    return [
+      '#markup' => $this->t('Hola este es mi primer controlador con node dinamico '.$node->label()),
+    ];
+  }
+
+    public function homeManual($node) {
+    return [
+      '#markup' => $this->t('Hola este es mi primer controlador con node dinamico '.$node),
     ];
   }
 }

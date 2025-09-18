@@ -1,6 +1,18 @@
 curso_module.primer_ruta:
-  path: '/curso/controller/pagina'
+  path: '/curso/controller/pagina/{pagina}'
   defaults:
     _controller: '\Drupal\curso_module\Controller\CursoController::home'
+  requirements:
+    _permission: 'access content'
+curso_module.segunda_ruta:
+  path: '/curso/controller/pagina-dinamica/{node}'
+  defaults:
+    _controller: '\Drupal\curso_module\Controller\CursoController::homeDinamico'
+  requirements:
+    _permission: 'access content'
+curso_module.tercer_ruta:
+  path: '/curso/controller/pagina-manual/{node}'
+  defaults:
+    _controller: '\Drupal\curso_module\Controller\CursoController::homeManual'
   requirements:
     _permission: 'access content'
