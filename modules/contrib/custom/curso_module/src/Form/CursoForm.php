@@ -83,6 +83,26 @@ class CursoForm extends FormBase {
       '#required' => FALSE,
     ];
 
+    $node = $this->entityTypeManager->getStorage('node')->load(95);
+
+    $form['entidades'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'node',
+      '#title' => $this->t('Entidades'),
+      '#tags' => true,
+      //'#default_value' => $node,
+      //'#default_value' => [$node],
+      #'#selection_handle' => 'default',
+      '#selection_settings' => [
+        //'target_bundles' => ['peliculas', 'article'],
+        'target_bundles' => ['tags'],
+      ],
+      '#autocreate' => [
+        'bundle' => 'tags',
+        //'uid' => 1 //Opcional, y cuando esto ocurre es aplicado al usuario que envia el formulario
+      ],
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Enviar'),
@@ -116,6 +136,16 @@ class CursoForm extends FormBase {
       '@email' => $form_state->getValue('email'),
       '@mensaje' => $form_state->getValue('mensaje'),
     ]));
+    //dd($form_state->getValues('entidades'));
     //dpm($form_state->getValues());
+
+    $terms = $form_state->getValue('entidades');
+    foreach($terms as $term) {
+      if (array_key_exists('entity', $term)) {
+        $term['entity']->save();
+        dpm('algo se guardo');
+
+      }
+    }
   }
 }
