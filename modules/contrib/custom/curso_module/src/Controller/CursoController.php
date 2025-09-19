@@ -67,6 +67,18 @@ class CursoController  extends  ControllerBase {
       '#tipo' => $resultado,
     ];
   }
+
+
+  public function formController() {
+    $form = $this->formBuilder()->getForm('Drupal\curso_module\Form\CursoForm');
+
+    $build = [];
+
+    $build[] = ['#markup' => '<h1>Formulario desde el controlador</h1>'];
+    $build[] = $form;
+
+    return $build;
+  }
 }
 
 
