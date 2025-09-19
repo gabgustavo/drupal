@@ -3,7 +3,6 @@
 namespace Drupal\curso_module\Form;
 
 use Drupal\Component\Utility\EmailValidatorInterface as UtilityEmailValidatorInterface;
-use Drupal\Core\Validator\EmailValidatorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;

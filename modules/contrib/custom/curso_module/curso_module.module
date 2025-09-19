@@ -4,6 +4,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Markup;
 use Drupal;
 use Drupal\node\NodeInterface;
+use \Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_help().
@@ -56,4 +57,36 @@ function curso_module_theme($existing, $type, $theme, $path) {
       'variables' => ['etiqueta' => NULL, 'tipo' => NULL]
     ],
   ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function curso_module_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /*if ($form_id == 'curso_module_form') {
+    $form['mensaje']['#required'] = true;
+    $form['apellido']['#required'] = false;
+    //dd($form);
+  }
+
+  if ($form_id == 'node_article_form') {
+    dpm('Alterando el formulario de articulo');
+  }*/
+
+  switch ($form_id) {
+    case 'node_article_form':
+      dpm('Alterando el formulario de articulo');
+      break;
+    case 'curso_module_form':
+      $form['mensaje']['#required'] = true;
+      $form['apellido']['#required'] = false;
+      break;
+  }
+}
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function curso_module_form_curso_module_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['mensaje']['#required'] = true;
+  $form['apellido']['#required'] = false;
 }
