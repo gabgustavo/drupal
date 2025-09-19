@@ -4,10 +4,42 @@ namespace Drupal\curso_module\Controller;
 
 use \Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Drupal;
+use Drupal\Core\Messenger\MessengerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\curso_module\Services\Repetir;
+use Drupal\Core\Entity\EntityTypeManager;
 
-class CursoController  extends  ControllerBase{
+class CursoController  extends  ControllerBase {
+
+  /**
+   * @var Repetir
+   */
+  private $repetir;
+
+  protected $messenger;
+  protected $entityTypeManager;
+
+  public function __construct(
+    Repetir $repetir,
+    MessengerInterface $messenger,
+    EntityTypeManager $entityTypeManager
+  )
+  {
+    $this->repetir = $repetir;
+    $this->messenger = $messenger;
+    $this->entityTypeManager = $entityTypeManager;
+  }
+
+  public static function create(ContainerInterface $container)
+  {
+    return new static(
+      $container->get('curso_module.repetir'),
+      $container->get('messenger'),
+      $container->get('entity_type.manager'),
+    );
+  }
+
   public function home($pagina) {
     return [
       #'#plain_text' => $this->t('Hola este es mi primer controlador del curso con plain text'),
@@ -31,8 +63,8 @@ class CursoController  extends  ControllerBase{
 
   public function homeDinamicoDos(NodeInterface $node) {
     //Esta implementacion no es la correcta
-    $repetir = Drupal::service('curso_module.repetir');
-    $resultado = $repetir->repetir('Desarrollos ', 7);
+    //$repetir = Drupal::service('curso_module.repetir');
+    $resultado = $this->repetir->repetir('Desarrollos ', 7);
     return [
       '#theme' => 'curso_plantilla',
       '#etiqueta' => $node->label(),
