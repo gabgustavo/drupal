@@ -23,3 +23,10 @@ curso_module.cuarta_ruta:
     _controller: '\Drupal\curso_module\Controller\CursoController::homeDinamicoDos'
   requirements:
     _permission: 'access content'
+
+curso_module.curso_form:
+  path: '/curso/form/formulario'
+  defaults:
+    _form: '\Drupal\curso_module\Form\CursoForm'
+  requirements:
+    _permission: 'access content'
