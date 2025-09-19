@@ -5,6 +5,7 @@ namespace Drupal\curso_module\Controller;
 use \Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal;
 
 class CursoController  extends  ControllerBase{
   public function home($pagina) {
@@ -29,10 +30,13 @@ class CursoController  extends  ControllerBase{
   }
 
   public function homeDinamicoDos(NodeInterface $node) {
+    //Esta implementacion no es la correcta
+    $repetir = Drupal::service('curso_module.repetir');
+    $resultado = $repetir->repetir('Desarrollos ', 7);
     return [
       '#theme' => 'curso_plantilla',
       '#etiqueta' => $node->label(),
-      '#tipo' => $node->bundle(),
+      '#tipo' => $resultado,
     ];
   }
 }
