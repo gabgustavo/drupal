@@ -8,7 +8,6 @@ use Drupal;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\curso_module\Services\Repetir;
-use Drupal\Core\Entity\EntityTypeManager;
 
 class CursoController  extends  ControllerBase {
 
@@ -18,17 +17,14 @@ class CursoController  extends  ControllerBase {
   private $repetir;
 
   protected $messenger;
-  protected $entityTypeManager;
 
   public function __construct(
     Repetir $repetir,
     MessengerInterface $messenger,
-    EntityTypeManager $entityTypeManager
   )
   {
     $this->repetir = $repetir;
     $this->messenger = $messenger;
-    $this->entityTypeManager = $entityTypeManager;
   }
 
   public static function create(ContainerInterface $container)
