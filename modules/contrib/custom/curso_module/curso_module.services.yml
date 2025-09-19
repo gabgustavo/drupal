@@ -1,4 +1,4 @@
 services:
   curso_module.repetir:
     class: Drupal\curso_module\Services\Repetir
-    arguments: ['@logger.channel.default']
+    arguments: ['@messenger', '@entity_type.manager']
