@@ -2,6 +2,9 @@
 
 namespace Drupal\curso_module\Form;
 
+use Drupal\Component\Utility\EmailValidatorInterface as UtilityEmailValidatorInterface;
+use Drupal\Core\Validator\EmailValidatorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -9,6 +12,24 @@ use Drupal\Core\Form\FormStateInterface;
 
 
 class CursoForm extends FormBase {
+
+   /**
+   * @var \Drupal\Core\Validator\EmailValidatorInterface
+   */
+  protected $mailValid;
+
+  public function __construct(
+    UtilityEmailValidatorInterface $mailValid,
+  )
+  {
+    $this->mailValid = $mailValid;
+  }
+
+  public static function create(ContainerInterface $container) {
+  return new static(
+    $container->get('email.validator')
+  );
+}
 
   /**
    * returns string
@@ -63,6 +84,7 @@ class CursoForm extends FormBase {
     return $form;
   }
 
+  //Activar modulo Inline Form Errors, para que se vean los errores en el formulario
   public function validateForm(array &$form, FormStateInterface $form_state) {
     if (strlen($form_state->getValue('nombre')) < 3) {
       $form_state->setErrorByName('nombre', $this->t('El nombre debe tener al menos 3 caracteres.'));
@@ -71,14 +93,21 @@ class CursoForm extends FormBase {
     if (strlen($form_state->getValue('apellido')) < 3) {
       $form_state->setErrorByName('apellido', $this->t('El apellido debe tener al menos 3 caracteres.'));
     }
+
+    $email = $form_state->getValue('email');
+
+    if (!$this->mailValid->isValid($email)) {
+      $form_state->setErrorByName('email', $this->t('El correo electrónico no es válido.'));
+    }
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    \Drupal::messenger()->addMessage($this->t('<br>Formulario enviado correctamente. Nombre: @nombre, Apellido: @apellido, Email: @email, Mensaje: @mensaje', [
+    $this->messenger()->addStatus($this->t('<br>Formulario enviado correctamente. Nombre: @nombre, Apellido: @apellido, Email: @email, Mensaje: @mensaje', [
       '@nombre' => $form_state->getValue('nombre'),
       '@apellido' => $form_state->getValue('apellido'),
       '@email' => $form_state->getValue('email'),
       '@mensaje' => $form_state->getValue('mensaje'),
     ]));
+    //dpm($form_state->getValues());
   }
 }
