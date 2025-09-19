@@ -6,27 +6,36 @@ use Drupal\Component\Utility\EmailValidatorInterface as UtilityEmailValidatorInt
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 //Drupal FAPI
 
 
 class CursoForm extends FormBase {
 
-   /**
+  /**
    * @var \Drupal\Core\Validator\EmailValidatorInterface
    */
   protected $mailValid;
 
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
   public function __construct(
     UtilityEmailValidatorInterface $mailValid,
+    EntityTypeManagerInterface $entityTypeManager,
   )
   {
     $this->mailValid = $mailValid;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   public static function create(ContainerInterface $container) {
   return new static(
-    $container->get('email.validator')
+    $container->get('email.validator'),
+    $container->get('entity_type.manager'),
   );
 }
 
