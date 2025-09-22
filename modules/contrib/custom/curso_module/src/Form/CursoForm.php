@@ -101,6 +101,7 @@ class CursoForm extends FormBase {
         'bundle' => 'tags',
         //'uid' => 1 //Opcional, y cuando esto ocurre es aplicado al usuario que envia el formulario
       ],
+      '#access' => $this->currentUser()->isAuthenticated(),//le da visibilidad al campo segun el acceso
     ];
 
     $form['submit'] = [
