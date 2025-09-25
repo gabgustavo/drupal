@@ -5,9 +5,12 @@ namespace Drupal\curso_module\Controller;
 use \Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
 use Drupal;
+use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\curso_module\Services\Repetir;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 class CursoController  extends  ControllerBase {
 
@@ -17,14 +20,19 @@ class CursoController  extends  ControllerBase {
   private $repetir;
 
   protected $messenger;
+  protected $configFactory;
 
   public function __construct(
     Repetir $repetir,
     MessengerInterface $messenger,
+    EntityTypeManagerInterface $entityTypeManager,
+    ConfigFactoryInterface $configFactory,
   )
   {
     $this->repetir = $repetir;
     $this->messenger = $messenger;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->configFactory = $configFactory;
   }
 
   public static function create(ContainerInterface $container)
@@ -33,6 +41,7 @@ class CursoController  extends  ControllerBase {
       $container->get('curso_module.repetir'),
       $container->get('messenger'),
       $container->get('entity_type.manager'),
+      $container->get('config.factory'),
     );
   }
 
@@ -79,6 +88,28 @@ class CursoController  extends  ControllerBase {
 
     return $build;
   }
+
+
+  public function configCurso() {
+    /*$config = $this->config('system.site');
+    $config->get('name');
+    dpm($config->get('name'));
+
+    $configFactory = \Drupal::configFactory('config.factory');
+    $config2 = $configFactory->get('system.site');
+    dpm($config2->get('name'));*/
+    //$config = $this->configFactory->get('system.site');
+    //$configEdit = $this->configFactory->getEditable('system.site');
+    //dpm($configEdit);
+
+    //$configEdit->set('slogan', 'El slogan modificado desde el controlador')
+    //->save();
+
+    return [
+      '#markup' => $this->t('Ruta de configuración'),
+    ];
+  }
+
 }
 
 

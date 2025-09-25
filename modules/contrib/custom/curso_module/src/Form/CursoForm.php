@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\taxonomy\Entity\Term;
 
 //Drupal FAPI
 
@@ -146,12 +147,22 @@ class CursoForm extends FormBase {
     //dpm($form_state->getValues());
 
     $terms = $form_state->getValue('entidades');
-    foreach($terms as $term) {
-      if (array_key_exists('entity', $term)) {
+    foreach ($terms as $term) {
+      /*if (array_key_exists('entity', $term)) {
         $term['entity']->save();
         dpm('algo se guardo');
 
-      }
+      }*/
+      //dpm($term['entity']);
+      //dd($term);
+      /*if (!empty($term['value'])) {
+        $new_term = Term::create([
+          'name' => $term['value'],
+          'vid' => 'tags',
+        ]);
+        $new_term->save();
+        \Drupal::messenger()->addMessage("Nuevo término creado: " . $new_term->label());
+      }*/
     }
   }
 }

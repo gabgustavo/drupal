@@ -2,7 +2,6 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Markup;
-use Drupal;
 use Drupal\node\NodeInterface;
 use \Drupal\Core\Form\FormStateInterface;
 
@@ -10,7 +9,7 @@ use \Drupal\Core\Form\FormStateInterface;
  * Implements hook_help().
  */
 function curso_module_help($route_name, RouteMatchInterface $route_match) {
-  $moduleHandler = Drupal::service('extension.list.module');
+  $moduleHandler = \Drupal::service('extension.list.module');
   $modulePath = $moduleHandler->getPath('curso_module');
   $imageUrl = base_path() . $modulePath . '/images/search.png';
 
@@ -42,7 +41,7 @@ function curso_module_node_insert(NodeInterface $node) {
  * @param Drupal\Core\Entity\EntityInterface $entity
  */
 function curso_module_node_update(NodeInterface $node) {
-  $messenger = Drupal::service('messenger');
+  $messenger = \Drupal::service('messenger');
   $messenger->addError('drupal esta llamando al hook update');
 
 }
