@@ -57,12 +57,36 @@ class DbController extends ControllerBase
     )
     ->fetchAll();
 
-    dd($data);
+    //dd($data);
 
     return ['#markup' => 'Consultas a base de datos estaticas.'];
   }
 
+  //https://www.drupal.org/docs/8/api/database-api/dynamic-queries/conditions#s-supported-operators
   public function selectDinamico() {
+
+    $result = $this->db->select('curso_db', 'c')
+    //->fields('c', ['name', 'id'])
+    ->fields('c')
+    //->condition('nid', 'null', 'IS NULL')
+    //->condition('name', '%Luis%', 'LIKE')
+
+    ->orderBy('c.name', 'desc');
+    //Esta seria la parte dinamica 6
+    $nid = null;
+    if($nid) {
+      $result->isNotNull('nid');
+    } else {
+      $result->condition('name', '%Luis%', 'LIKE');
+    }
+
+    $result->join('node', 'n', 'c.nid = n.nid');
+    $result = $result
+    ->fields('n')
+    ->execute()
+    ->fetchAll();
+
+    dd($result);
     return ['#markup' => 'Consultas a base de datos select dinamico.'];
   }
 
