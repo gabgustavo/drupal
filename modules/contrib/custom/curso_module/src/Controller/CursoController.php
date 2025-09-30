@@ -99,11 +99,11 @@ class CursoController  extends  ControllerBase {
     $config2 = $configFactory->get('system.site');
     dpm($config2->get('name'));*/
     //$config = $this->configFactory->get('system.site');
-    //$configEdit = $this->configFactory->getEditable('system.site');
+    $configEdit = $this->configFactory->getEditable('system.site');
     //dpm($configEdit);
 
-    //$configEdit->set('slogan', 'El slogan modificado desde el controlador')
-    //->save();
+    $configEdit->set('slogan', 'El slogan modificado desde el controlador')
+    ->save();
 
     return [
       '#markup' => $this->t('Ruta de configuración'),
