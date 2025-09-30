@@ -27,6 +27,38 @@ class DbController extends ControllerBase
   }
 
   public function queryEstatica() {
+    /*$this->db->query(
+      "INSERT INTO {curso_db} (name, value, nid) VALUES (:name, :value, :nid)",
+      [
+        ':name' => 'Luis B.',
+        ':value' => 'Trabajando en drupal y DB',
+        ':nid' => 1,
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO {curso_db} (name, value) VALUES (:name, :value)",
+      [
+        ':name' => 'Camilo',
+        ':value' => 'Trabajando en drupal y DB sin relacion DB'
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO {curso_db} (name, value) VALUES (:name, :value)",
+      [
+        ':name' => 'Maria',
+        ':value' => 'Maria me esta ayudando en mis proyectos'
+      ]
+    );*/
+
+    $data = $this->db->query(
+      "SELECT * FROM {curso_db}"
+    )
+    ->fetchAll();
+
+    dd($data);
+
     return ['#markup' => 'Consultas a base de datos estaticas.'];
   }
 
