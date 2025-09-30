@@ -3,8 +3,26 @@ namespace Drupal\curso_config\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+//use Drupal\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\curso_module\Services\Repetir;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CursoConfigForm extends ConfigFormBase {
+
+  private $repetir;
+  public function __construct(ConfigFactoryInterface $config_factory, Repetir $repetir)
+  {
+    parent::__construct($config_factory);
+    $this->repetir = $repetir;
+  }
+
+  public static function create(ContainerInterface $container) {
+    return new static (
+      $container->get('config.factory'),
+      $container->get('curso_module.repetir'),
+    );
+  }
 
   /**
    * {@inheritdoc}

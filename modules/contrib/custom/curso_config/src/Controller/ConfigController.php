@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 
 class ConfigController extends ControllerBase {
 
+
   public function settings() {
     $config = $this->config('curso_config.nuestra_configuracion');
 
