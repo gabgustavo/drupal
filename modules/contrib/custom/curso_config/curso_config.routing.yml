@@ -1,6 +1,13 @@
-curso_config.primer_ruta:
+curso_config.ruta_config:
   path: '/curso-config/config'
   defaults:
     _controller: '\Drupal\curso_config\Controller\ConfigController::settings'
+  requirements:
+    _permission: 'access content'
+
+curso_config.ruta_form:
+  path: '/curso-config/form'
+  defaults:
+    _form: '\Drupal\curso_config\Form\CursoConfigForm'
   requirements:
     _permission: 'access content'
