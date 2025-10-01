@@ -117,10 +117,44 @@ class DbController extends ControllerBase
   }
 
   public function deleteDinamico() {
+    $this->db->delete('curso_db')
+    ->condition('name', 'Claudia')
+     ->execute();
     return ['#markup' => 'Consultas a base de datos delete dinamico.'];
   }
 
   public function mergeDinamico() {
+    /*$values = [
+      'name' => 'Margarita',
+      'value' => 'Margarita esta de vacaciones y algo mas...',
+    ];
+    $name = 'Margarita';
+
+    //select si false => insert, si true => update
+    $this->db->merge('curso_db')
+    ->key('name', $name)
+    ->fields($values)
+    ->execute();*/
+
+    $valuesInsert = [
+      'name' => 'Jesus',
+      'value' => 'Jesus esta de en la casa de campo',
+    ];
+
+    $valuesUpdate = [
+      'name' => 'Jesus',
+      'value' => 'Jesus esta de en la casa de campo con algo de update',
+    ];
+    $name = 'Jesus';
+
+    $this->db->merge('curso_db')
+    ->key('name', $name)
+    ->insertFields($valuesInsert)
+    ->updateFields($valuesUpdate)
+     ->execute();
+
+
+
     return ['#markup' => 'Consultas a base de datos con merge.'];
   }
 }
