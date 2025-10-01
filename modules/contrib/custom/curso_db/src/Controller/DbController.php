@@ -91,6 +91,14 @@ class DbController extends ControllerBase
   }
 
   public function insertDinamico() {
+    $values = [
+      'name' => 'Margarita',
+      'value' => 'Margarita esta de vacaciones',
+    ];
+    $this->db->insert('curso_db')
+    ->fields($values)
+    ->execute();
+
     return ['#markup' => 'Consultas a base de datos insert dinamico.'];
   }
 
