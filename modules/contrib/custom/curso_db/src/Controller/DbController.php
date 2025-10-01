@@ -103,6 +103,16 @@ class DbController extends ControllerBase
   }
 
   public function updateDinamico() {
+    $valuesUpdate = [
+      'name' => 'Claudia',
+      'value' => 'Claudia esta de vacaciones',
+    ];
+
+    $this->db->update('curso_db')
+    ->fields($valuesUpdate)
+    ->condition('name', 'Margarita')
+    ->execute();
+
     return ['#markup' => 'Consultas a base de datos update dinamico.'];
   }
 
