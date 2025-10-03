@@ -48,8 +48,6 @@
 
 <div id="page-wrapper" class="page-wrapper">
   <div id="page">
-    <h1>Hoooola</h1>
-
     {% if page.header or page.primary_menu or page.secondary_menu %}
     <header id="header" class="site-header" data-drupal-selector="site-header" role="banner">
 
@@ -97,6 +95,12 @@
         <div class="main-content">
           <a id="main-content" tabindex="-1"></a>
           {{ page.hero }}
+          {% if page.curso %}
+          <section class="custo_block" style="padding: 10px; background: #e5fae9;">
+            {{ page.curso }}
+          </section>
+          {% endif %}
+
           <div class="main-content__container container">
             {{ page.highlighted }}
             {{ page.breadcrumb }}
